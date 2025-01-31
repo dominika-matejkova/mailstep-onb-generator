@@ -1,0 +1,517 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Review generator</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        function toggleVisibility(el) {
+            var x = document.getElementById(el);
+            if (x.style.display === "none") {
+                x.style.display = "block";
+            } else {
+                x.style.display = "none";
+            }
+        }
+
+        function changeValue(id) {
+            $("#" + id).text($("#" + id + "-input").val());
+        }
+
+        function uncheckAll() {
+            $("input[type=checkbox]").prop("checked", false);
+            $("input, textarea").each(function () {
+                this.value = "";
+            });
+        }
+
+        function changeDeveloperName() {
+            $(".developer-name").text(" " + $("#developer-name-input").val());
+        }
+
+        function changeAppName() {
+            $(".app-name").text(" " + $("#app-name-input").val());
+        }
+
+        function changeReviewerName() {
+            $(".reviewer-name").text($("#reviewer-name-input").val());
+        }
+    </script>
+
+    <style>
+        .bold {
+            font-weight: bold;
+        }
+
+        #disclaimer,
+        #followup,
+        #release {
+            font-size: small;
+        }
+
+        #disclaimer>p,
+        #followup>p,
+        #release>p {
+            margin-top: 5px;
+            margin-bottom: 3px;
+        }
+
+        #disclaimer>br,
+        #followup>br,
+        #release>br {
+            line-height: 0;
+        }
+
+        code {
+            color: brown;
+        }
+    </style>
+</head>
+
+<body class="w3-cell-row" onload="" id="property" style="padding-left: 2em;">
+
+    <!-- Feedback column -->
+    <div id="feedback" class="w3-cell w3-display-container" style="width: 40%;">
+        <h2 class="w3-center">
+            Finished feedback
+        </h2>
+
+        <!-- Feedback content -->
+        <div id="disclaimer" style="margin-top: 1em">
+            <p>Hello<span class="developer-name"></span>,</p>
+            <br>
+            <p>thank you for your patience while we reviewed your app<span class="app-name"></span>. Here is the
+                feedback we have so far:</p>
+            <br>
+            <ol>
+                <span id="documentation" style="display: none;">
+                    <li>I have not found any public API documentation - can you provide it?</li>
+                </span>
+
+                <div id="base" style="display: none;">
+                    <li><b>Base:</b></li>
+
+                    <ol>
+                        <span id="base-authorization" style="display: none;">
+                            <li>Authorization missing - see
+                                https://docs.integromat.com/apps/app-review/how-to-pass-an-app-review/base#authorization-and-sanitize
+                            </li>
+                        </span>
+                        <span id="base-authorization-move" style="display: none;">
+                            <li>Authorization missing - move the auth headers here so you can take advantage of base
+                                inheritance and don't have to repeat the code in every module
+                            </li>
+                        </span>
+                        <span id="base-sanitization" style="display: none;">
+                            <li>Sanitization is incorrect - see
+                                https://docs.integromat.com/apps/app-review/how-to-pass-an-app-review/base#authorization-and-sanitize
+                            </li>
+                        </span>
+                        <span id="base-error" style="display: none;">
+                            <li>Error handling missing - see
+                                https://docs.integromat.com/apps/app-review/how-to-pass-an-app-review/base/error-handling
+                                <ul>
+                                    <li>Make sure to include the status code and message of the error, for example:
+                                        <code>"response": {"error": "[{{statusCode}}] {{body.message}}"}</code>
+                                    </li>
+                                </ul>
+                            </li>
+                        </span>
+                        <span id="" style="display: none;">
+                            <li> </li>
+                        </span>
+                    </ol>
+                </div>
+
+                <div id="connection" style="display: none;">
+                    <li><b>Connection:</b></li>
+                    <ol>
+                        <span id="connection-rename" style="display: none;">
+                            <li>Please rename the connection to have the same label as your app</li>
+                        </span>
+                        <span id="connection-basic" style="display: none;">
+                            <li>Add a basic connection to verify the users' credentials are valid:
+                                https://docs.integromat.com/apps/app-structure/connections/basic-connection</li>
+                        </span>
+                        <span id="connection-metadata" style="display: none;">
+                            <li>If possible, add either username or email into metadata:
+                                https://docs.integromat.com/apps/app-structure/connections/basic-connection#metadata
+                            </li>
+                        </span>
+                    </ol>
+                </div>
+
+                <div id="all-modules" style="display: none;">
+                    <li><b>All modules:</b></li>
+
+                    <ol>
+                        <span id="all-public" style="display: none;">
+                            <li>The modules you wish to have checked and published should be set to public (Available on
+                                invite-only basis)</li>
+                        </span>
+                        <span id="all-labels" style="display: none;">
+                            <li>Module labels and descriptions should follow our best practices - see
+                                https://docs.integromat.com/apps/best-practices#names-and-descriptions
+
+                                <ul>
+                                    <li>
+                                        Labels should use Title Case and contain a verb of the key action and the
+                                        labels of any related entities, such as <code>Create an Invoice</code> or
+                                        <code>Get a Customer</code>
+                                    </li>
+                                    <li>Descriptions should follow common sentence structure (i.e. first letter
+                                        capital, period at the end) and be in the third person (i.e. creates, updates,
+                                        returns etc.), such as <code>Creates an invoice.</code> or
+                                        <code>Retrieves details about a specified customer.</code>
+                                    </li>
+                                </ul>
+                            </li>
+                        </span>
+                        <span id="all-spelling" style="display: none;">
+                            <li>Pay attention to proper spelling and capitalization in labels, descriptions, and help
+                                fields - i.e. Id should be ID, Url should be URL etc.
+                            </li>
+                        </span>
+                        <span id="all-search" style="display: none;">
+                            <li>Does the module return multiple results (i.e. an array)? If yes, the module should be of
+                                type
+                                Search and iterate the array - see
+                                https://docs.integromat.com/apps/app-structure/modules/search</li>
+                        </span>
+                        <span id="all-interface" style="display: none;">
+                            <li>All fields returned by the module should be defined in the interface tab, including
+                                labels</li>
+                        </span>
+                        <span id="all-output" style="display: none;">
+                            <li>Does the module output any information valuable to the user? If yes, it needs to be
+                                specified in the interface tab. If nothing useful is returned, use
+                                <code>"output": "{{undefined}}"</code> and delete everything in the interface tab
+                            </li>
+                        </span>
+                        <span id="all-datetimes" style="display: none;">
+                            <li>Date times in module output are not formatted properly - see
+                                https://docs.integromat.com/apps/best-practices#showing-dates-correctly
+                                <ul>
+                                    <li>You can utilize our formatting functions:
+                                        https://support.integromat.com/hc/en-us/articles/360005771793-Date-Time-Functions
+                                    </li>
+                                    <li>Or you can create your own IML function - let me know and we can enable IML for
+                                        you
+                                    </li>
+                                </ul>
+                            </li>
+                        </span>
+                        <span id="all-backend" style="display: none;">
+                            <li>The user should not be forced to use a different time format. The field should be of
+                                type date and all necessary formatting should happen on backend:
+                                https://docs.integromat.com/apps/best-practices#date-parameters</li>
+                        </span>
+                    </ol>
+
+                </div>
+
+                <div id="universal-module" style="display: none;">
+                    <li><b>Universal module:</b></li>
+
+                    <ol>
+                        <span id="universal-label" style="display: none;">
+                            <li>Change label and description to follow our best practices - see
+                                https://docs.integromat.com/apps/app-structure/modules/universal-module/rest</li>
+                        </span>
+                        <span id="universal-example" style="display: none;">
+                            <li>Add an example of a functional endpoint to the "url" help field</li>
+                        </span>
+                        <span id="universal-missing" style="display: none;">
+                            <li>Missing, please add - see
+                                https://docs.integromat.com/apps/app-review/how-to-pass-an-app-review/modules#universal-module
+                            </li>
+                        </span>
+
+                    </ol>
+                </div>
+
+            </ol>
+
+            <br>
+
+            <p>
+                <span id="next-steps-release" style="">Once the issues above are resolved, we can proceed with releasing
+                    the app to Integromat users.<br>
+                </span>
+                <span id="next-steps-repeat" style="display: none;">
+                    Please note, this feedback is very generalized - especially since the same errors are repeated
+                    across multiple modules. Please read this article and all links inside very carefully and implement
+                    the needed changes before we continue the review:
+                    https://docs.integromat.com/apps/app-review/how-to-pass-an-app-review
+                    <br><br>
+                    Unfortunately, the app cannot be released to our users in its current state. I would advise you to
+                    carefully read the article above and make sure all modules follow these points and work as expected.
+                </span>
+            </p>
+
+            <p>
+                <span id="next-steps-scenarios" style="display: none;">
+                    Before the app is released to Integromat users, we will also be checking the scenarios you have
+                    supplied with the review request. Unfortunately, some of the scenario links do not show the history
+                    of the module working properly or have no history at all - this needs to be remedied as well.
+                </span>
+            </p>
+            <br>
+            <p>
+                If you have any more questions on this topic, please reply to this email. If you need help with
+                something else, please open a new support request. It helps us to answer questions faster.<br>
+            </p>
+            <br>
+            <p>
+                Best regards,<br>
+                <span class="reviewer-name">Dominika</span><br>
+                <a href="https://www.integromat.com/">Integromat.com</a>
+            </p>
+
+        </div>
+    </div>
+
+    <div id="review" class="w3-cell w3-display-container">
+
+        <h2 class="w3-left">↓ Check all review points</h2>
+
+        <!-- Developer name, app name, reviewer name -->
+        <div class="w3-row-padding">
+            <div class="w3-cell" style="width: 12em; padding-right: 2em;">
+                <label for="developer-name-input">Developer name</label>
+                <input type="text" name="developer-name-input" id="developer-name-input" oninput="changeDeveloperName()"
+                       class="w3-input" placeholder="Franta Vomáčka">
+            </div>
+            <div class="w3-cell" style="width: 12em; padding-right: 2em;">
+                <label for="app-name-input">App name</label>
+                <input type="text" name="app-name-input" id="app-name-input" oninput="changeAppName()" class="w3-input"
+                       placeholder="My App">
+            </div>
+            <div class="w3-cell" style="width: 10em;">
+                <label for="reviewer-name-input">Reviewer name</label>
+                <input type="text" name="reviewer-name-input" id="reviewer-name-input" oninput="changeReviewerName()"
+                       class="w3-input" placeholder="Dominika">
+            </div>
+        </div>
+
+        <div id="spacer" class="w3-cell" style="height: 1em;"></div>
+
+        <!-- General feedback related to the most frequent mistakes -->
+        <h4 class="w3-container w3-button w3-block w3-blue" onclick="toggleVisibility('initial-form')">
+            Initial feedback ▼</h4>
+
+        <div id="initial-form" class="w3-container" style="display: block;">
+            <div class="w3-cell-row">
+                <div class="w3-cell w3-container">
+                    <div id="documentation-form" class="w3-container">
+                        <div class="w3-row-padding">
+                            <input type="checkbox" class="w3-check" name="documentation-check" id="documentation-check"
+                                   onchange="toggleVisibility('documentation')">
+                            <label for="documentation-check"><span class="bold">Public API docs</span></label>
+                        </div>
+                    </div>
+
+                    <div id="base-form" class="w3-container">
+                        <div class="w3-row-padding">
+                            <input type="checkbox" class="w3-check" name="base-check" id="base-check"
+                                   onchange="toggleVisibility('base')">
+                            <label for="base-check"><span class="bold">Base</span></label>
+                        </div>
+                        <div class="w3-container" style="padding-left: 3em;">
+                            <input type="checkbox" class="w3-check" name="base-authorization-check"
+                                   id="base-authorization-check" onchange="toggleVisibility('base-authorization')">
+                            <label for="base-authorization-check"><span>Authorization missing</span></label>
+                            <br>
+                            <input type="checkbox" class="w3-check" name="base-authorization-move-check"
+                                   id="base-authorization-move-check"
+                                   onchange="toggleVisibility('base-authorization-move')">
+                            <label for="base-authorization-move-check"><span>Authorization - move from
+                                    modules</span></label>
+                            <br>
+                            <input type="checkbox" class="w3-check" name="base-sanitization-check"
+                                   id="base-sanitization-check" onchange="toggleVisibility('base-sanitization')">
+                            <label for="base-sanitization-check"><span>Sanitization incorrect</span></label>
+                            <br>
+                            <input type="checkbox" class="w3-check" name="base-error-check" id="base-error-check"
+                                   onchange="toggleVisibility('base-error')">
+                            <label for="base-error-check"><span>Error handling missing</span></label>
+                        </div>
+                    </div>
+
+                    <div id="connection-form" class="w3-container">
+                        <div class="w3-row-padding">
+                            <input type="checkbox" class="w3-check" name="connection-check" id="connection-check"
+                                   onchange="toggleVisibility('connection')">
+                            <label for="connection-check"><span class="bold">Connection</span></label>
+                        </div>
+
+                        <div class="w3-container" style="padding-left: 3em;">
+                            <input type="checkbox" class="w3-check" name="connection-rename-check"
+                                   id="connection-rename-check" onchange="toggleVisibility('connection-rename')">
+                            <label for="connection-rename-check"><span>Rename connection</span></label>
+                            <br>
+                            <input type="checkbox" class="w3-check" name="connection-basic-check"
+                                   id="connection-basic-check" onchange="toggleVisibility('connection-basic')">
+                            <label for="connection-basic-check"><span>Add basic connection</span></label>
+                            <br>
+                            <input type="checkbox" class="w3-check" name="connection-metadata-check"
+                                   id="connection-metadata-check" onchange="toggleVisibility('connection-metadata')">
+                            <label for="connection-metadata-check"><span>Add metadata</span></label>
+                        </div>
+                    </div>
+
+                    <div id="universal-module-form" class="w3-container">
+                        <div class="w3-row-padding">
+                            <input type="checkbox" class="w3-check" name="universal-module-check"
+                                   id="universal-module-check" onchange="toggleVisibility('universal-module')">
+                            <label for="universal-module-check"><span class="bold">Universal module</span></label>
+                        </div>
+                        <div class="w3-container" style="padding-left: 3em;">
+                            <input type="checkbox" class="w3-check" name="universal-label-check"
+                                   id="universal-label-check" onchange="toggleVisibility('universal-label')">
+                            <label for="universal-label-check"><span>Label & description</span></label>
+                            <br>
+                            <input type="checkbox" class="w3-check" name="universal-example-check"
+                                   id="universal-example-check" onchange="toggleVisibility('universal-example')">
+                            <label for="universal-example"><span>URL example</span></label>
+                            <br>
+                            <input type="checkbox" class="w3-check" name="universal-missing-check"
+                                   id="universal-missing-check" onchange="toggleVisibility('universal-missing')">
+                            <label for="universal-missing"><span>Missing</span></label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w3-cell w3-container">
+                    <div id="all-modules-form" class="w3-container">
+                        <div class="w3-row-padding">
+                            <input type="checkbox" class="w3-check" name="all-modules-check" id="all-modules-check"
+                                   onchange="toggleVisibility('all-modules')">
+                            <label for="all-modules-check"><span class="bold">All modules</span></label>
+                        </div>
+
+                        <div class="w3-container" style="padding-left: 3em;">
+                            <input type="checkbox" class="w3-check" name="all-public-check" id="all-public-check"
+                                   onchange="toggleVisibility('all-public')">
+                            <label for="all-public-check"><span>Set modules to public</span></label>
+                            <br>
+                            <input type="checkbox" class="w3-check" name="all-labels-check" id="all-labels-check"
+                                   onchange="toggleVisibility('all-labels')">
+                            <label for="all-labels-check"><span>Labels & descriptions</span></label>
+                            <br>
+                            <input type="checkbox" class="w3-check" name="all-spelling-check" id="all-spelling-check"
+                                   onchange="toggleVisibility('all-spelling')">
+                            <label for="all-spelling-check"><span>Spelling & capitalization</span></label>
+                            <br>
+                            <input type="checkbox" class="w3-check" name="all-search-check" id="all-search-check"
+                                   onchange="toggleVisibility('all-search')">
+                            <label for="all-search-check"><span>Search module</span></label>
+                            <br>
+                            <input type="checkbox" class="w3-check" name="all-interface-check" id="all-interface-check"
+                                   onchange="toggleVisibility('all-interface')">
+                            <label for="all-interface-check"><span>Interface defined</span></label>
+                            <br>
+                            <input type="checkbox" class="w3-check" name="all-output-check" id="all-output-check"
+                                   onchange="toggleVisibility('all-output')">
+                            <label for="all-output-check"><span>Output not needed</span></label>
+                            <br>
+                            <input type="checkbox" class="w3-check" name="all-datetimes-check" id="all-datetimes-check"
+                                   onchange="toggleVisibility('all-datetimes')">
+                            <label for="all-datetimes-check"><span>Datetime not formatted</span></label>
+                            <br>
+                            <input type="checkbox" class="w3-check" name="all-backend-check" id="all-backend-check"
+                                   onchange="toggleVisibility('all-backend')">
+                            <label for="all-backend-check"><span>Datetime format on backend</span></label>
+                        </div>
+                    </div>
+
+                    <div id="next-steps-form" class="w3-container">
+                        <div class="w3-row-padding">
+                            <input type="checkbox" class="w3-check" name="next-steps-check" id="next-steps-check"
+                                   checked="checked" disabled>
+                            <label for="next-steps-check"><span class="bold">Next steps</span></label>
+                        </div>
+
+                        <div class="w3-container" style="padding-left: 3em;">
+                            <input type="checkbox" class="w3-check" name="next-steps-release-check"
+                                   id="next-steps-release-check" onchange="toggleVisibility('next-steps-release')"
+                                   checked="checked">
+                            <label for="next-steps-release"><span>Release once resolved</span></label>
+                            <br>
+                            <input type="checkbox" class="w3-check" name="next-steps-repeat-check"
+                                   id="next-steps-repeat-check" onchange="toggleVisibility('next-steps-repeat')">
+                            <label for="next-steps-repeat"><span>Repeat review</span></label>
+                            <br>
+                            <input type="checkbox" class="w3-check" name="next-steps-scenarios-check"
+                                   id="next-steps-scenarios-check" onchange="toggleVisibility('next-steps-scenarios')">
+                            <label for="next-steps-scenarios"><span>Check scenarios</span></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Specific phrases for detailed module feedback -->
+            <h4 class="w3-container w3-center w3-indigo">Frequent phrases for module-specific feedback</h4>
+
+            <ol>
+                <li>Interface not defined / missing labels</li>
+                <li>
+                    <span>This seems like a good candidate for an RPC to load the items dynamically:
+                        https://docs.integromat.com/apps/best-practices#remote-procedure</span>
+                    <ul>
+                        <li>
+                            <span>If you implement an RPC, make sure to add <code>"mode": "edit"</code> as well to
+                                reduce module
+                                load time</span>
+                        </li>
+                    </ul>
+                </li>
+                <li>Response is too restricted - see
+                    https://docs.integromat.com/apps/best-practices#how-to-process-the-api-response</li>
+            </ol>
+        </div>
+
+        <div id="spacer" class="w3-cell" style="height: 1em;"></div>
+        <h4 class="w3-container w3-button w3-block w3-light-green" onclick="toggleVisibility('release')">Ready
+            for release ▼</h4>
+        <div class="w3-container" id="release" style="display: none;">
+            <p>Hello<span class="developer-name"></span>,</p>
+            <br>
+            <p>after doing a last check of your app<span class="app-name"></span>, we have determined it's all
+                ready to be
+                published!</p>
+            <br>
+            <p>I have added it to the list for our next release, which should happen within two weeks. As soon
+                as your app is published, you will see it on our timeline here:
+                https://www.integromat.com/en/timeline</p>
+            <br>
+            <p>Best regards,<br>
+                <span class="reviewer-name">Dominika</span><br>
+                <a href="https://www.integromat.com/">Integromat.com</a>
+            </p>
+        </div>
+
+        <div id="spacer" class="w3-cell" style="height: 1em;"></div>
+        <h4 class="w3-container w3-button w3-block w3-orange" onclick="toggleVisibility('followup')">
+            Follow-up reminder ▼</h4>
+        <div class="w3-container" id="followup" style="display: none;">
+            <p>Hello<span class="developer-name"></span>,</p>
+            <br>
+            <p>you have recently requested a code review for your app<span class="app-name"></span>. We have
+                sent you some feedback a month ago, have you received this message?</p>
+            <br>
+            <p>Are you planning to finish / further develop your app?</p>
+            <br>
+            <p>Best regards,<br>
+                <span class="reviewer-name">Dominika</span><br>
+                <a href="https://www.integromat.com/">Integromat.com</a>
+            </p>
+        </div>
+    </div>
+
+</body>
+
+</html>
