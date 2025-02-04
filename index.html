@@ -29,11 +29,11 @@
         }
 
         function changeDeveloperName() {
-            $(".developer-name").text(" " + $("#developer-name-input").val());
+            $(".customer-name").text(" " + $("#customer-name-input").val());
         }
 
         function changeAppName() {
-            $(".app-name").text(" " + $("#app-name-input").val());
+            $(".eshop-name").text(" " + $("#eshop-name-input").val());
         }
 
         function changeReviewerName() {
@@ -76,355 +76,312 @@
     <!-- Feedback column -->
     <div id="feedback" class="w3-cell w3-display-container" style="width: 40%;">
         <h2 class="w3-center">
-            Finished feedback
+            Výsledný text
         </h2>
 
         <!-- Feedback content -->
         <div id="disclaimer" style="margin-top: 1em">
-            <p>Hello<span class="developer-name"></span>,</p>
+            <p>Dobrý den, <span class="customer-name"></span>,</p>
             <br>
-            <p>thank you for your patience while we reviewed your app<span class="app-name"></span>. Here is the
-                feedback we have so far:</p>
+            <p>dovolte mi Vás srdečně přivítat u společnosti Mailstep a poděkovat za Vaši důvěru a zájem o naše služby
+                fulfillmentu. Jmenuji se <span class="reviewer-name">Dominika Matějková</span> a během celého procesu
+                onboardingu budu Vaším technickým kontaktem.
+            </p>
             <br>
-            <ol>
-                <span id="documentation" style="display: none;">
-                    <li>I have not found any public API documentation - can you provide it?</li>
+            <p>Zde je seznam klíčových kroků, které od Vás v tuto chvíli potřebujeme: </p>
+            <ul>
+                <span id="credentials" style="">
+                    <li><b>Přihlášení do Mailship portálu</b> – na email Vám dorazila automaticky generovaná zpráva k
+                        vytvoření hesla. Pokud email nemůžete najít, zkontrolujte i SPAM. Do portálu se pak přihlásíte
+                        přes odkaz <a href="https://ui.app.mailship.eu/user">https://ui.app.mailship.eu/user</a> .</li>
                 </span>
 
-                <div id="base" style="display: none;">
-                    <li><b>Base:</b></li>
-
+                <div id="shoptet" style="display: none;">
+                    <li><b>Pokud budete integrovat přes Shoptet doplněk:</b></li>
                     <ol>
-                        <span id="base-authorization" style="display: none;">
-                            <li>Authorization missing - see
-                                https://docs.integromat.com/apps/app-review/how-to-pass-an-app-review/base#authorization-and-sanitize
-                            </li>
-                        </span>
-                        <span id="base-authorization-move" style="display: none;">
-                            <li>Authorization missing - move the auth headers here so you can take advantage of base
-                                inheritance and don't have to repeat the code in every module
-                            </li>
-                        </span>
-                        <span id="base-sanitization" style="display: none;">
-                            <li>Sanitization is incorrect - see
-                                https://docs.integromat.com/apps/app-review/how-to-pass-an-app-review/base#authorization-and-sanitize
-                            </li>
-                        </span>
-                        <span id="base-error" style="display: none;">
-                            <li>Error handling missing - see
-                                https://docs.integromat.com/apps/app-review/how-to-pass-an-app-review/base/error-handling
+                        <span id="shoptet-install" style="display: none;">
+                            <li><b>Instalace doplňku Shoptet</b> – Dle <a
+                                   href="https://help.mailship.eu/kb/instalace-doplnku-shoptet-do-vaseho-e-shopu">návodu</a>
+                                si doplněk stáhněte a instalujte. Můžete také zadat identifikační údaje, které naleznete
+                                níže. S aktivací produkčního prostředí prosím <u>počkejte až na školení</u>.
                                 <ul>
-                                    <li>Make sure to include the status code and message of the error, for example:
-                                        <code>"response": {"error": "[{{statusCode}}] {{body.message}}"}</code>
-                                    </li>
+                                    <li><b>Uživatelské jméno:</b><mark style="margin-left: 10px;">xxx</mark></li>
+                                    <li><b>Heslo:</b><mark style="margin-left: 10px;">xxx</mark></li>
                                 </ul>
                             </li>
                         </span>
-                        <span id="" style="display: none;">
-                            <li> </li>
+                        <span id="shoptet-products" style="display: none;">
+                            <li><b>Kontrola produktových dat</b> – SKU a EAN, tyto kódy musí být korektně vyplněné u
+                                všech produktů, které chcete <a
+                                   href="https://help.mailship.eu/kb/synchronizace-produktu-shoptet">synchronizovat</a>
+                                ze Shoptet do Mailship.
+                            </li>
+                        </span>
+                        <span id="shoptet-statuses" style="display: none;">
+                            <li><b>Nastavení stavů objednávek a doprav</b> – Vyberte si <a
+                                   href="https://help.mailship.eu/kb/synchronizace-objednavek-a-zmeny-stavu-shoptet">stavy
+                                    objednávek</a>, které jsou pro vás relevantní a nezapomeňte navolit všechny <a
+                                   href="https://help.mailship.eu/kb/dopravy-a-jejich-nastaveni-shoptet">dopravce</a>,
+                                které s námi máte smluvně domluvené.
+                            </li>
+                        </span>
+                        <span id="shoptet-wh-sync" style="display: none;">
+                            <li><b>Synchronizace skladů</b> – Nastavte si synchronizaci skladů dle našeho doporučení
+                                v tomto <a
+                                   href="https://help.mailship.eu/kb/sklady-a-skladove-zasoby-shoptet">manuálu</a>
+                                s ohledem na Vaše potřeby.
+                            </li>
                         </span>
                     </ol>
                 </div>
 
-                <div id="connection" style="display: none;">
-                    <li><b>Connection:</b></li>
+                <div id="shopify" style="display: none;">
+                    <li><b>Pokud budete integrovat přes Shopify doplněk:</b></li>
                     <ol>
-                        <span id="connection-rename" style="display: none;">
-                            <li>Please rename the connection to have the same label as your app</li>
+                        <span id="shopify-api" style="display: none;">
+                            <li><b>Vytvoření API emailu</b> – Vytvořte email, který budete používat pro doplněk Shopify
+                                a Mailship. Tento email by měl být odlišný od Vašeho osobního emailu – např. api@<span
+                                      class="eshop-name" style="margin-left: -5;"></span>. API email prosím zašlete
+                                zpátky na můj email s telefonním číslem, které nesmí být stejné u dvou různých emailů.
+                                Telefonní číslo slouží pro obnovení hesla v případě jeho zapomenutí.</li>
                         </span>
-                        <span id="connection-basic" style="display: none;">
-                            <li>Add a basic connection to verify the users' credentials are valid:
-                                https://docs.integromat.com/apps/app-structure/connections/basic-connection</li>
+                        <span id="shopify-install" style="display: none;">
+                            <li><b>Instalace doplňku Shopify</b> – Doplněk si nainstalujte dle <a
+                                   href="https://help.mailship.eu/kb/instalace-doplnku-shopify-do-vaseho-e-shopu">návodu</a>.
+                            </li>
                         </span>
-                        <span id="connection-metadata" style="display: none;">
-                            <li>If possible, add either username or email into metadata:
-                                https://docs.integromat.com/apps/app-structure/connections/basic-connection#metadata
+                        <span id="shopify-products" style="display: none;">
+                            <li><b>Kontrola produktových dat</b> – <a
+                                   href="https://help.mailship.eu/kb/zalozeni-produktu">SKU a EAN</a>, kódy musí být
+                                korektně vyplněné u všech produktů, které chcete <a
+                                   href="https://help.mailship.eu/kb/synchronizace-produktu-shopify">synchronizovat</a>
+                                ze Shopify do Mailship.
+                            </li>
+                        </span>
+                        <span id="shopify-statuses" style="display: none;">
+                            <li><b>Nastavení synchronizace a doprav</b> – Jednotlivé synchronizace si můžete nastavit
+                                podle našeho <a
+                                   href="https://help.mailship.eu/kb/nastaveni-synchronizaci-shopify">doporučení</a> a
+                                vašich potřeb. Nezapomeňte navolit všechny <a
+                                   href="https://help.mailship.eu/kb/dopravy-a-jejich-nastaveni-shopify">dopravce</a>,
+                                které s námi máte smluvně domluvené.
                             </li>
                         </span>
                     </ol>
                 </div>
 
-                <div id="all-modules" style="display: none;">
-                    <li><b>All modules:</b></li>
-
+                <div id="api" style="display: none;">
+                    <li><b>Pokud budete integrovat sami přes naše API:</b></li>
                     <ol>
-                        <span id="all-public" style="display: none;">
-                            <li>The modules you wish to have checked and published should be set to public (Available on
-                                invite-only basis)</li>
+                        <span id="api-email" style="display: none;">
+                            <li><b>Vytvoření API emailu</b> – vytvořte email, který budete používat pro přístup k
+                                Mailship API. Tento email by měl být odlišný od Vašeho osobního emailu – např. api@<span
+                                      class="eshop-name" style="margin-left: -5;"></span>. API email mi prosím zašlete
+                                zpět společně s telefonním číslem, které nesmí být stejné u dvou různých emailů.
+                                Telefonní číslo slouží pro obnovení hesla v případě jeho zapomenutí.</li>
                         </span>
-                        <span id="all-labels" style="display: none;">
-                            <li>Module labels and descriptions should follow our best practices - see
-                                https://docs.integromat.com/apps/best-practices#names-and-descriptions
-
-                                <ul>
-                                    <li>
-                                        Labels should use Title Case and contain a verb of the key action and the
-                                        labels of any related entities, such as <code>Create an Invoice</code> or
-                                        <code>Get a Customer</code>
-                                    </li>
-                                    <li>Descriptions should follow common sentence structure (i.e. first letter
-                                        capital, period at the end) and be in the third person (i.e. creates, updates,
-                                        returns etc.), such as <code>Creates an invoice.</code> or
-                                        <code>Retrieves details about a specified customer.</code>
-                                    </li>
-                                </ul>
+                        <span id="api-access" style="display: none;">
+                            <li><b>Přístup k API</b> – následně Vám zpět pošlu údaje, které budete používat pro
+                                autorizaci všech requestů. Pro získání autorizačního tokenu údaje pošlete přes endpoint
+                                <a
+                                   href="https://d32q8t04.eu1.hs-sales-engage.com/Ctc/L0+23284/d32q8T04/Jll2-6qcW7Y8-PT6lZ3lGW735SR96MwWwHW1HRR1X73sv07W67--HL1vdPrNVPqr414bx2RxN4djhkjcCmJ3W7fTN201-PsMwW4WX9lS7HT2_TW4YHB1q3B9wnGW6RjNB117BcTJW5JwL1H21kDmCW8tWnrF5lXk_XW5qpgqG759P_YW4h_mZ77sR-tcW8_4tyh7V9X_nW4dKwyv7KVc0qW83J-nn6CTHlNN7nmmP-70mxCW18tyFb5NjylvW1glDHm2r6VHVW6H0k-W2Cc1YgW2RLfRk6VCYNcW42qNB47KdvjrW7x2NB_6QFG9bW3gF1jP8_hdjyW64QmLL1p19VRW455PHx7tYF_nf8n5K6R04">Login
+                                    User</a>, token pak periodicky obnovujete pomocí <a
+                                   href="https://d32q8t04.eu1.hs-sales-engage.com/Ctc/L0+23284/d32q8T04/JlF2-6qcW8wLKSR6lZ3kWW7kyKcT2Y3fpmW1BY15C1Z4SG4VRm9mN5zqLpvW3L-3xP4xqvdbW9jHq3Y57dY6dN1g-r6_SVp5vW6vhSjn33d_FHW8q_Lpz5LMwtXV9H92S4W-Bz7W5hdJJ18h_L6yW352RYZ7WQb6nW2SY-3R1qDWCLN45MYSGxN9vVW1DDtk_4BY_S8VfC-Xz8FBD7FW3ym1ML5yYyDxW2szdxj5srJygW27SkVC66cXkcN6MHmZSY4pQhW3sJW0C55fh6bW8FbCsr92DvClW4V40LT4Y4ZJPW8J4Hwd2t_C8ZW7-HmZ76wWr8fW1NCQ2_5Jv43mW5QGwqV7qVdrYW36p4kz7rZ5PFW8pZnbJ7r7f4Pf1QpsBg04">Refresh
+                                    Token</a>.
                             </li>
                         </span>
-                        <span id="all-spelling" style="display: none;">
-                            <li>Pay attention to proper spelling and capitalization in labels, descriptions, and help
-                                fields - i.e. Id should be ID, Url should be URL etc.
+                        <span id="api-docs" style="display: none;">
+                            <li><b>Technickou dokumentaci</b> naleznete <a
+                                   href="https://d32q8t04.eu1.hs-sales-engage.com/Ctc/L0+23284/d32q8T04/JkM2-6qcW6N1vHY6lZ3nqW10_l229jGw0GW7fKTb24YQnWhW7scL106N91RBW6dCfz66xFbRbW8Wg6K63GbYh6W8j03S53CdDGJW1tN4dC4XcvBLW9ffQHC6bxSpDW51v3rB782Vk0W6W_R833c96D6W1sTL0k4x7H2QW6wQyNQ3TmndcW5xdX4j6V3PH3V-4Gwp19h_l4W23lKBF7lGbYsW4XcFqP15mqrmVMB6Bk6zvftLW5V7hRT2xbJk0W4xCg4w3L2N79W65b3KC9dQRbBW7qqgQv7d14gJVfC66g4WQy18f2M5NWH04">zde</a>.
+                                V tuto chvíli budou pro Vás zřejmě nejpraktičtější endpointy týkající se produktů
+                                (Product), objednávek (Expedition) a avíz (Stock Advice).
                             </li>
-                        </span>
-                        <span id="all-search" style="display: none;">
-                            <li>Does the module return multiple results (i.e. an array)? If yes, the module should be of
-                                type
-                                Search and iterate the array - see
-                                https://docs.integromat.com/apps/app-structure/modules/search</li>
-                        </span>
-                        <span id="all-interface" style="display: none;">
-                            <li>All fields returned by the module should be defined in the interface tab, including
-                                labels</li>
-                        </span>
-                        <span id="all-output" style="display: none;">
-                            <li>Does the module output any information valuable to the user? If yes, it needs to be
-                                specified in the interface tab. If nothing useful is returned, use
-                                <code>"output": "{{undefined}}"</code> and delete everything in the interface tab
-                            </li>
-                        </span>
-                        <span id="all-datetimes" style="display: none;">
-                            <li>Date times in module output are not formatted properly - see
-                                https://docs.integromat.com/apps/best-practices#showing-dates-correctly
-                                <ul>
-                                    <li>You can utilize our formatting functions:
-                                        https://support.integromat.com/hc/en-us/articles/360005771793-Date-Time-Functions
-                                    </li>
-                                    <li>Or you can create your own IML function - let me know and we can enable IML for
-                                        you
-                                    </li>
-                                </ul>
-                            </li>
-                        </span>
-                        <span id="all-backend" style="display: none;">
-                            <li>The user should not be forced to use a different time format. The field should be of
-                                type date and all necessary formatting should happen on backend:
-                                https://docs.integromat.com/apps/best-practices#date-parameters</li>
                         </span>
                     </ol>
 
                 </div>
 
-                <div id="universal-module" style="display: none;">
-                    <li><b>Universal module:</b></li>
+                <div id="plugins" style="display: none;">
+                    <span id="woocommerce" style="display: none;">
+                        <li><b>Pokud chcete využít integraci přes WooCommerce doplněk:</b></li>
+                        <ol>
+                            <li><b>Instalace doplňku Kybernaut Mailstep</b> – dle návodu si doplněk stáhněte a
+                                nainstalujte. Můžete rovnou provést základní nastavení pomocí údajů níže. Před aktivací
+                                integrace (bod 4) si prosím nejdříve se mnou domluvte online schůzku.</li>
 
-                    <ol>
-                        <span id="universal-label" style="display: none;">
-                            <li>Change label and description to follow our best practices - see
-                                https://docs.integromat.com/apps/app-structure/modules/universal-module/rest</li>
-                        </span>
-                        <span id="universal-example" style="display: none;">
-                            <li>Add an example of a functional endpoint to the "url" help field</li>
-                        </span>
-                        <span id="universal-missing" style="display: none;">
-                            <li>Missing, please add - see
-                                https://docs.integromat.com/apps/app-review/how-to-pass-an-app-review/modules#universal-module
-                            </li>
-                        </span>
-
-                    </ol>
+                            <li><b>Import produktových dat</b> – ve WooCommerce můžete provést export produktů, které
+                                potom v portálu Mailship hromadně naimportujete. Lze také produkty jednotlivě vytvořit
+                                přes Mailship, případně přes API endpoint Create Product.</li>
+                        </ol>
+                    </span>
+                    <span id="baselinker" style="display: none;">
+                        <li>Add an example of a functional endpoint to the "url" help field</li>
+                    </span>
                 </div>
 
-            </ol>
+                <!-- Next steps -->
+                <li>
+                    <span id="next-steps-expiry" style=""><b>Šarže</b> – Zašlete mi seznam všech produktů (včetně SKU), které mají mít aktivní sledování šarže. Ideálně ve formátu xls tabulky.</span>
+                </li>
+                <li>
+                    <span id="next-steps-stock-advice" style=""><b>Vytvoření avíza v portálu Mailship</b> – Než
+                        provedete
+                        návoz
+                        zboží na sklad, <a href="https://help.mailship.eu/kb/prijmy">vytvořte avízo</a> v našem systému.
+                        Bez
+                        avíza by nemohlo dojít k naskladnění.</span>
+                </li>
+                <li>
+                    <span id="next-steps-ean" style=""><b>Označení čárovým kódem (EAN)</b> – Každý produkt musí být
+                        označen unikátním EAN kódem. V případě chybějících kódů si s námi můžete domluvit jejich
+                        vytvoření a
+                        polepení vašich produktů.</span>
+                </li>
+                <li>
+                    <span id="next-steps-meeting" style=""><b>Rezervace online schůzky (60 minut)</b> – ráda Vám
+                        zodpovím
+                        veškeré otázky týkající se navigace v portálu Mailship, rozsahu integrace nebo používání API.
+                        Termín
+                        online schůzky si rezervujte na <a
+                           href="https://d32q8t04.eu1.hs-sales-engage.com/Ctc/L0+23284/d32q8T04/JlF2-6qcW8wLKSR6lZ3p0W3Wz3mb2KRxXlW694lt_32tgR6N2Y90xrY8jqHW17YKZ48sv7CGW5p14TY7gxd3LW6HWDkJ62fKw4W6dS3xM4Y_vvjW1NclY31qWkHDW6v6hqh5M2Bl_W3MR5mV7G9lmGW7fQP624gVl8CW2yYcrw5M28n3W577x3z6XrB_CVwlDt_1WG1kBW56zn-g7NsK5RW4YqMr-74z6XlW22RTf187n_WTW6JTcgG5gn70WVTcXFZ6vLtJzW3FDs5j9244GcW4ZD4m84H_VnNW7Ftw4x8dYdNWW42VL4G6G1YKKW5F-Ftn6fPq9_N9cbBNL_0B9SW98Mj6L3-bQ8gW6wlqN57Nfm6jW7Z4NnY6PWP0mf6S5TXP04">tomto
+                            odkazu</a>. V potvrzení rezervace obdržíte odkaz na MS Teams hovor.<br>
+                    </span>
+                </li>
+            </ul>
 
-            <br>
-
-            <p>
-                <span id="next-steps-release" style="">Once the issues above are resolved, we can proceed with releasing
-                    the app to Integromat users.<br>
-                </span>
-                <span id="next-steps-repeat" style="display: none;">
-                    Please note, this feedback is very generalized - especially since the same errors are repeated
-                    across multiple modules. Please read this article and all links inside very carefully and implement
-                    the needed changes before we continue the review:
-                    https://docs.integromat.com/apps/app-review/how-to-pass-an-app-review
-                    <br><br>
-                    Unfortunately, the app cannot be released to our users in its current state. I would advise you to
-                    carefully read the article above and make sure all modules follow these points and work as expected.
-                </span>
-            </p>
-
-            <p>
-                <span id="next-steps-scenarios" style="display: none;">
-                    Before the app is released to Integromat users, we will also be checking the scenarios you have
-                    supplied with the review request. Unfortunately, some of the scenario links do not show the history
-                    of the module working properly or have no history at all - this needs to be remedied as well.
-                </span>
-            </p>
-            <br>
-            <p>
-                If you have any more questions on this topic, please reply to this email. If you need help with
-                something else, please open a new support request. It helps us to answer questions faster.<br>
-            </p>
-            <br>
-            <p>
-                Best regards,<br>
-                <span class="reviewer-name">Dominika</span><br>
-                <a href="https://www.integromat.com/">Integromat.com</a>
-            </p>
-
+            <p>Těším se na spolupráci,</p>
         </div>
     </div>
 
     <div id="review" class="w3-cell w3-display-container">
 
-        <h2 class="w3-left">↓ Check all review points</h2>
+        <h2 class="w3-left">↓ Zaškrtni všechny relevantní body</h2>
 
-        <!-- Developer name, app name, reviewer name -->
+        <!-- Customer name, eshop domain, specialist name -->
         <div class="w3-row-padding">
-            <div class="w3-cell" style="width: 12em; padding-right: 2em;">
-                <label for="developer-name-input">Developer name</label>
-                <input type="text" name="developer-name-input" id="developer-name-input" oninput="changeDeveloperName()"
-                       class="w3-input" placeholder="Franta Vomáčka">
+            <div class="w3-cell" style="width: 16em; padding-right: 2em;">
+                <label for="customer-name-input">Jméno zákazníka v 5. pádě</label>
+                <input type="text" name="customer-name-input" id="customer-name-input" oninput="changeDeveloperName()"
+                       class="w3-input" placeholder="pane Vomáčko">
             </div>
-            <div class="w3-cell" style="width: 12em; padding-right: 2em;">
-                <label for="app-name-input">App name</label>
-                <input type="text" name="app-name-input" id="app-name-input" oninput="changeAppName()" class="w3-input"
-                       placeholder="My App">
+            <div class="w3-cell" style="width: 16em; padding-right: 2em;">
+                <label for="eshop-name-input">Doména eshopu</label>
+                <input type="text" name="eshop-name-input" id="eshop-name-input" oninput="changeAppName()"
+                       class="w3-input" placeholder="obchudek.cz">
             </div>
-            <div class="w3-cell" style="width: 10em;">
-                <label for="reviewer-name-input">Reviewer name</label>
+            <div class="w3-cell" style="width: 16em;">
+                <label for="reviewer-name-input">Jméno specialisty</label>
                 <input type="text" name="reviewer-name-input" id="reviewer-name-input" oninput="changeReviewerName()"
-                       class="w3-input" placeholder="Dominika">
+                       class="w3-input" value="Dominika Matějková">
             </div>
         </div>
 
         <div id="spacer" class="w3-cell" style="height: 1em;"></div>
 
         <!-- General feedback related to the most frequent mistakes -->
-        <h4 class="w3-container w3-button w3-block w3-blue" onclick="toggleVisibility('initial-form')">
-            Initial feedback ▼</h4>
+        <h4 class="w3-container w3-block w3-blue">
+            ▼ Potřebné akce</h4>
 
         <div id="initial-form" class="w3-container" style="display: block;">
             <div class="w3-cell-row">
                 <div class="w3-cell w3-container">
-                    <div id="documentation-form" class="w3-container">
+                    <div id="credentials-form" class="w3-container">
                         <div class="w3-row-padding">
-                            <input type="checkbox" class="w3-check" name="documentation-check" id="documentation-check"
-                                   onchange="toggleVisibility('documentation')">
-                            <label for="documentation-check"><span class="bold">Public API docs</span></label>
+                            <input type="checkbox" class="w3-check" name="credentials-check" id="credentials-check"
+                                   onchange="toggleVisibility('credentials')" checked="checked">
+                            <label for="credentials-check"><span class="bold">Mailship přístupy</span></label>
                         </div>
                     </div>
 
-                    <div id="base-form" class="w3-container">
+                    <div id="shoptet-form" class="w3-container">
                         <div class="w3-row-padding">
-                            <input type="checkbox" class="w3-check" name="base-check" id="base-check"
-                                   onchange="toggleVisibility('base')">
-                            <label for="base-check"><span class="bold">Base</span></label>
+                            <input type="checkbox" class="w3-check" name="shoptet-check" id="shoptet-check"
+                                   onchange="toggleVisibility('shoptet')">
+                            <label for="shoptet-check"><span class="bold">Shoptet</span></label>
                         </div>
                         <div class="w3-container" style="padding-left: 3em;">
-                            <input type="checkbox" class="w3-check" name="base-authorization-check"
-                                   id="base-authorization-check" onchange="toggleVisibility('base-authorization')">
-                            <label for="base-authorization-check"><span>Authorization missing</span></label>
+                            <input type="checkbox" class="w3-check" name="shoptet-install-check"
+                                   id="shoptet-install-check" onchange="toggleVisibility('shoptet-install')">
+                            <label for="shoptet-install-check"><span>Instalace doplňku</span></label>
                             <br>
-                            <input type="checkbox" class="w3-check" name="base-authorization-move-check"
-                                   id="base-authorization-move-check"
-                                   onchange="toggleVisibility('base-authorization-move')">
-                            <label for="base-authorization-move-check"><span>Authorization - move from
-                                    modules</span></label>
+                            <input type="checkbox" class="w3-check" name="shoptet-products-check"
+                                   id="shoptet-products-check" onchange="toggleVisibility('shoptet-products')">
+                            <label for="shoptet-products-check"><span>Kontrola produktových dat</span></label>
                             <br>
-                            <input type="checkbox" class="w3-check" name="base-sanitization-check"
-                                   id="base-sanitization-check" onchange="toggleVisibility('base-sanitization')">
-                            <label for="base-sanitization-check"><span>Sanitization incorrect</span></label>
+                            <input type="checkbox" class="w3-check" name="shoptet-statuses-check"
+                                   id="shoptet-statuses-check" onchange="toggleVisibility('shoptet-statuses')">
+                            <label for="shoptet-statuses-check"><span>Stavy objednávek</span></label>
                             <br>
-                            <input type="checkbox" class="w3-check" name="base-error-check" id="base-error-check"
-                                   onchange="toggleVisibility('base-error')">
-                            <label for="base-error-check"><span>Error handling missing</span></label>
+                            <input type="checkbox" class="w3-check" name="shoptet-wh-sync-check"
+                                   id="shoptet-wh-sync-check" onchange="toggleVisibility('shoptet-wh-sync')">
+                            <label for="shoptet-wh-sync-check"><span>Synchronizace skladů</span></label>
                         </div>
                     </div>
 
-                    <div id="connection-form" class="w3-container">
+                    <div id="shopify-form" class="w3-container">
                         <div class="w3-row-padding">
-                            <input type="checkbox" class="w3-check" name="connection-check" id="connection-check"
-                                   onchange="toggleVisibility('connection')">
-                            <label for="connection-check"><span class="bold">Connection</span></label>
+                            <input type="checkbox" class="w3-check" name="shopify-check" id="shopify-check"
+                                   onchange="toggleVisibility('shopify')">
+                            <label for="shopify-check"><span class="bold">Shopify</span></label>
                         </div>
 
                         <div class="w3-container" style="padding-left: 3em;">
-                            <input type="checkbox" class="w3-check" name="connection-rename-check"
-                                   id="connection-rename-check" onchange="toggleVisibility('connection-rename')">
-                            <label for="connection-rename-check"><span>Rename connection</span></label>
+                            <input type="checkbox" class="w3-check" name="shopify-api-check" id="shopify-api-check"
+                                   onchange="toggleVisibility('shopify-api')">
+                            <label for="shopify-api-check"><span>API email</span></label>
                             <br>
-                            <input type="checkbox" class="w3-check" name="connection-basic-check"
-                                   id="connection-basic-check" onchange="toggleVisibility('connection-basic')">
-                            <label for="connection-basic-check"><span>Add basic connection</span></label>
+                            <input type="checkbox" class="w3-check" name="shopify-install-check"
+                                   id="shopify-install-check" onchange="toggleVisibility('shopify-install')">
+                            <label for="shopify-install-check"><span>Instalace doplňku</span></label>
                             <br>
-                            <input type="checkbox" class="w3-check" name="connection-metadata-check"
-                                   id="connection-metadata-check" onchange="toggleVisibility('connection-metadata')">
-                            <label for="connection-metadata-check"><span>Add metadata</span></label>
+                            <input type="checkbox" class="w3-check" name="shopify-products-check"
+                                   id="shopify-products-check" onchange="toggleVisibility('shopify-products')">
+                            <label for="shopify-products-check"><span>Kontrola produktových dat</span></label>
+                            <br>
+                            <input type="checkbox" class="w3-check" name="shopify-statuses-check"
+                                   id="shopify-statuses-check" onchange="toggleVisibility('shopify-statuses')">
+                            <label for="shopify-statuses-check"><span>Stavy objednávek</span></label>
                         </div>
                     </div>
 
-                    <div id="universal-module-form" class="w3-container">
+                    <div id="plugins-form" class="w3-container">
                         <div class="w3-row-padding">
-                            <input type="checkbox" class="w3-check" name="universal-module-check"
-                                   id="universal-module-check" onchange="toggleVisibility('universal-module')">
-                            <label for="universal-module-check"><span class="bold">Universal module</span></label>
+                            <input type="checkbox" class="w3-check" name="plugins-check" id="plugins-check"
+                                   onchange="toggleVisibility('plugins')">
+                            <label for="plugins-check"><span class="bold">Pluginy</span></label>
                         </div>
                         <div class="w3-container" style="padding-left: 3em;">
-                            <input type="checkbox" class="w3-check" name="universal-label-check"
-                                   id="universal-label-check" onchange="toggleVisibility('universal-label')">
-                            <label for="universal-label-check"><span>Label & description</span></label>
+                            <input type="checkbox" class="w3-check" name="woocommerce-check" id="woocommerce-check"
+                                   onchange="toggleVisibility('woocommerce')">
+                            <label for="woocommerce-check"><span>WooCommerce</span></label>
                             <br>
-                            <input type="checkbox" class="w3-check" name="universal-example-check"
-                                   id="universal-example-check" onchange="toggleVisibility('universal-example')">
-                            <label for="universal-example"><span>URL example</span></label>
-                            <br>
-                            <input type="checkbox" class="w3-check" name="universal-missing-check"
-                                   id="universal-missing-check" onchange="toggleVisibility('universal-missing')">
-                            <label for="universal-missing"><span>Missing</span></label>
+                            <input type="checkbox" class="w3-check" name="baselinker-check" id="baselinker-check"
+                                   onchange="toggleVisibility('baselinker')">
+                            <label for="baselinker"><span>Base.com</span></label>
                         </div>
                     </div>
                 </div>
 
                 <div class="w3-cell w3-container">
-                    <div id="all-modules-form" class="w3-container">
+                    <div id="api-form" class="w3-container">
                         <div class="w3-row-padding">
-                            <input type="checkbox" class="w3-check" name="all-modules-check" id="all-modules-check"
-                                   onchange="toggleVisibility('all-modules')">
-                            <label for="all-modules-check"><span class="bold">All modules</span></label>
+                            <input type="checkbox" class="w3-check" name="api-check" id="api-check"
+                                   onchange="toggleVisibility('api')">
+                            <label for="api-check"><span class="bold">API</span></label>
                         </div>
 
                         <div class="w3-container" style="padding-left: 3em;">
-                            <input type="checkbox" class="w3-check" name="all-public-check" id="all-public-check"
-                                   onchange="toggleVisibility('all-public')">
-                            <label for="all-public-check"><span>Set modules to public</span></label>
+                            <input type="checkbox" class="w3-check" name="api-email-check" id="api-email-check"
+                                   onchange="toggleVisibility('api-email')">
+                            <label for="api-email-check"><span>API email</span></label>
                             <br>
-                            <input type="checkbox" class="w3-check" name="all-labels-check" id="all-labels-check"
-                                   onchange="toggleVisibility('all-labels')">
-                            <label for="all-labels-check"><span>Labels & descriptions</span></label>
+                            <input type="checkbox" class="w3-check" name="api-access-check" id="api-access-check"
+                                   onchange="toggleVisibility('api-access')">
+                            <label for="api-access-check"><span>Přístup k API</span></label>
                             <br>
-                            <input type="checkbox" class="w3-check" name="all-spelling-check" id="all-spelling-check"
-                                   onchange="toggleVisibility('all-spelling')">
-                            <label for="all-spelling-check"><span>Spelling & capitalization</span></label>
-                            <br>
-                            <input type="checkbox" class="w3-check" name="all-search-check" id="all-search-check"
-                                   onchange="toggleVisibility('all-search')">
-                            <label for="all-search-check"><span>Search module</span></label>
-                            <br>
-                            <input type="checkbox" class="w3-check" name="all-interface-check" id="all-interface-check"
-                                   onchange="toggleVisibility('all-interface')">
-                            <label for="all-interface-check"><span>Interface defined</span></label>
-                            <br>
-                            <input type="checkbox" class="w3-check" name="all-output-check" id="all-output-check"
-                                   onchange="toggleVisibility('all-output')">
-                            <label for="all-output-check"><span>Output not needed</span></label>
-                            <br>
-                            <input type="checkbox" class="w3-check" name="all-datetimes-check" id="all-datetimes-check"
-                                   onchange="toggleVisibility('all-datetimes')">
-                            <label for="all-datetimes-check"><span>Datetime not formatted</span></label>
-                            <br>
-                            <input type="checkbox" class="w3-check" name="all-backend-check" id="all-backend-check"
-                                   onchange="toggleVisibility('all-backend')">
-                            <label for="all-backend-check"><span>Datetime format on backend</span></label>
+                            <input type="checkbox" class="w3-check" name="api-docs-check" id="api-docs-check"
+                                   onchange="toggleVisibility('api-docs')">
+                            <label for="api-docs-check"><span>Dokumentace</span></label>
                         </div>
                     </div>
 
@@ -432,83 +389,39 @@
                         <div class="w3-row-padding">
                             <input type="checkbox" class="w3-check" name="next-steps-check" id="next-steps-check"
                                    checked="checked" disabled>
-                            <label for="next-steps-check"><span class="bold">Next steps</span></label>
+                            <label for="next-steps-check"><span class="bold">Další kroky</span></label>
                         </div>
 
                         <div class="w3-container" style="padding-left: 3em;">
-                            <input type="checkbox" class="w3-check" name="next-steps-release-check"
-                                   id="next-steps-release-check" onchange="toggleVisibility('next-steps-release')"
+                            <input type="checkbox" class="w3-check" name="next-steps-expiry-check"
+                                   id="next-steps-expiry-check"
+                                   onchange="toggleVisibility('next-steps-expiry')">
+                            <label for="next-steps-expiry"><span>Šarže</span></label>
+                        </div>
+
+                        <div class="w3-container" style="padding-left: 3em;">
+                            <input type="checkbox" class="w3-check" name="next-steps-stock-advice-check"
+                                   id="next-steps-stock-advice-check"
+                                   onchange="toggleVisibility('next-steps-stock-advice')" checked="checked" disabled>
+                            <label for="next-steps-stock-advice"><span>Vytvoření avíza</span></label>
+                        </div>
+
+                        <div class="w3-container" style="padding-left: 3em;">
+                            <input type="checkbox" class="w3-check" name="next-steps-ean-check"
+                                   id="next-steps-ean-check" onchange="toggleVisibility('next-steps-ean')"
+                                   checked="checked" disabled>
+                            <label for="next-steps-ean"><span>Označení EAN</span></label>
+                        </div>
+
+                        <div class="w3-container" style="padding-left: 3em;">
+                            <input type="checkbox" class="w3-check" name="next-steps-meeting-check"
+                                   id="next-steps-meeting-check" onchange="toggleVisibility('next-steps-meeting')"
                                    checked="checked">
-                            <label for="next-steps-release"><span>Release once resolved</span></label>
-                            <br>
-                            <input type="checkbox" class="w3-check" name="next-steps-repeat-check"
-                                   id="next-steps-repeat-check" onchange="toggleVisibility('next-steps-repeat')">
-                            <label for="next-steps-repeat"><span>Repeat review</span></label>
-                            <br>
-                            <input type="checkbox" class="w3-check" name="next-steps-scenarios-check"
-                                   id="next-steps-scenarios-check" onchange="toggleVisibility('next-steps-scenarios')">
-                            <label for="next-steps-scenarios"><span>Check scenarios</span></label>
+                            <label for="next-steps-meeting"><span>Online schůzka</span></label>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <!-- Specific phrases for detailed module feedback -->
-            <h4 class="w3-container w3-center w3-indigo">Frequent phrases for module-specific feedback</h4>
-
-            <ol>
-                <li>Interface not defined / missing labels</li>
-                <li>
-                    <span>This seems like a good candidate for an RPC to load the items dynamically:
-                        https://docs.integromat.com/apps/best-practices#remote-procedure</span>
-                    <ul>
-                        <li>
-                            <span>If you implement an RPC, make sure to add <code>"mode": "edit"</code> as well to
-                                reduce module
-                                load time</span>
-                        </li>
-                    </ul>
-                </li>
-                <li>Response is too restricted - see
-                    https://docs.integromat.com/apps/best-practices#how-to-process-the-api-response</li>
-            </ol>
-        </div>
-
-        <div id="spacer" class="w3-cell" style="height: 1em;"></div>
-        <h4 class="w3-container w3-button w3-block w3-light-green" onclick="toggleVisibility('release')">Ready
-            for release ▼</h4>
-        <div class="w3-container" id="release" style="display: none;">
-            <p>Hello<span class="developer-name"></span>,</p>
-            <br>
-            <p>after doing a last check of your app<span class="app-name"></span>, we have determined it's all
-                ready to be
-                published!</p>
-            <br>
-            <p>I have added it to the list for our next release, which should happen within two weeks. As soon
-                as your app is published, you will see it on our timeline here:
-                https://www.integromat.com/en/timeline</p>
-            <br>
-            <p>Best regards,<br>
-                <span class="reviewer-name">Dominika</span><br>
-                <a href="https://www.integromat.com/">Integromat.com</a>
-            </p>
-        </div>
-
-        <div id="spacer" class="w3-cell" style="height: 1em;"></div>
-        <h4 class="w3-container w3-button w3-block w3-orange" onclick="toggleVisibility('followup')">
-            Follow-up reminder ▼</h4>
-        <div class="w3-container" id="followup" style="display: none;">
-            <p>Hello<span class="developer-name"></span>,</p>
-            <br>
-            <p>you have recently requested a code review for your app<span class="app-name"></span>. We have
-                sent you some feedback a month ago, have you received this message?</p>
-            <br>
-            <p>Are you planning to finish / further develop your app?</p>
-            <br>
-            <p>Best regards,<br>
-                <span class="reviewer-name">Dominika</span><br>
-                <a href="https://www.integromat.com/">Integromat.com</a>
-            </p>
         </div>
     </div>
 
