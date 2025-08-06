@@ -68,6 +68,10 @@
         code {
             color: brown;
         }
+
+        a {
+            color: blue;
+        }
     </style>
 </head>
 
@@ -81,14 +85,13 @@
 
         <!-- Feedback content -->
         <div id="disclaimer" style="margin-top: 1em">
-            <p>Dobrý den, <span class="customer-name"></span>,</p>
-            <br>
+            <p>Dobrý den, <span class="customer-name"></span>,<br></p>
             <p>dovolte mi Vás srdečně přivítat u společnosti Mailstep a poděkovat za Vaši důvěru a zájem o naše služby
                 fulfillmentu. Jmenuji se <span class="reviewer-name">Dominika Matějková</span> a během celého procesu
                 onboardingu budu Vaším technickým kontaktem.
+                <br>
+                Zde je seznam klíčových kroků, které od Vás v tuto chvíli potřebujeme:
             </p>
-            <br>
-            <p>Zde je seznam klíčových kroků, které od Vás v tuto chvíli potřebujeme: </p>
             <ul>
                 <span id="credentials" style="">
                     <li><b>Přihlášení do Mailship portálu</b> – na email Vám dorazila automaticky generovaná zpráva k
@@ -101,7 +104,7 @@
                     <ol>
                         <span id="shoptet-install" style="display: none;">
                             <li><b>Instalace doplňku Shoptet</b> – Dle <a
-                                   href="https://help.mailship.eu/kb/instalace-doplnku-shoptet-do-vaseho-e-shopu">návodu</a>
+                                   href="https://help.mailship.com/CS/instalace-doplnku-shoptet-do-vaseho-e-shopu">návodu</a>
                                 si doplněk stáhněte a instalujte. Můžete také zadat identifikační údaje, které naleznete
                                 níže. S aktivací produkčního prostředí prosím <u>počkejte až na školení</u>.
                                 <ul>
@@ -113,22 +116,22 @@
                         <span id="shoptet-products" style="display: none;">
                             <li><b>Kontrola produktových dat</b> – SKU a EAN, tyto kódy musí být korektně vyplněné u
                                 všech produktů, které chcete <a
-                                   href="https://help.mailship.eu/kb/synchronizace-produktu-shoptet">synchronizovat</a>
+                                   href="https://help.mailship.eu/CS/synchronizace-produktu-shoptet">synchronizovat</a>
                                 ze Shoptet do Mailship.
                             </li>
                         </span>
                         <span id="shoptet-statuses" style="display: none;">
                             <li><b>Nastavení stavů objednávek a doprav</b> – Vyberte si <a
-                                   href="https://help.mailship.eu/kb/synchronizace-objednavek-a-zmeny-stavu-shoptet">stavy
+                                   href="https://help.mailship.com/CS/synchronizace-produktu-shoptet">stavy
                                     objednávek</a>, které jsou pro vás relevantní a nezapomeňte navolit všechny <a
-                                   href="https://help.mailship.eu/kb/dopravy-a-jejich-nastaveni-shoptet">dopravce</a>,
+                                   href="https://help.mailship.com/CS/dopravy-a-jejich-nastaveni-shoptet">dopravce</a>,
                                 které s námi máte smluvně domluvené.
                             </li>
                         </span>
                         <span id="shoptet-wh-sync" style="display: none;">
                             <li><b>Synchronizace skladů</b> – Nastavte si synchronizaci skladů dle našeho doporučení
                                 v tomto <a
-                                   href="https://help.mailship.eu/kb/sklady-a-skladove-zasoby-shoptet">manuálu</a>
+                                   href="https://help.mailship.eu/CS/sklady-a-skladove-zasoby-shoptet">manuálu</a>
                                 s ohledem na Vaše potřeby.
                             </li>
                         </span>
@@ -147,23 +150,23 @@
                         </span>
                         <span id="shopify-install" style="display: none;">
                             <li><b>Instalace doplňku Shopify</b> – Doplněk si nainstalujte dle <a
-                                   href="https://help.mailship.eu/kb/instalace-doplnku-shopify-do-vaseho-e-shopu">návodu</a>.
+                                   href="https://help.mailship.eu/CS/instalace-doplnku-shopify-do-vaseho-e-shopu">návodu</a>.
                             </li>
                         </span>
                         <span id="shopify-products" style="display: none;">
                             <li><b>Kontrola produktových dat</b> – <a
-                                   href="https://help.mailship.eu/kb/zalozeni-produktu">SKU a EAN</a>, kódy musí být
+                                   href="https://help.mailship.eu/CS/zalozeni-produktu">SKU a EAN</a>, kódy musí být
                                 korektně vyplněné u všech produktů, které chcete <a
-                                   href="https://help.mailship.eu/kb/synchronizace-produktu-shopify">synchronizovat</a>
+                                   href="https://help.mailship.eu/CS/synchronizace-produktu-shopify">synchronizovat</a>
                                 ze Shopify do Mailship.
                             </li>
                         </span>
                         <span id="shopify-statuses" style="display: none;">
                             <li><b>Nastavení synchronizace a doprav</b> – Jednotlivé synchronizace si můžete nastavit
                                 podle našeho <a
-                                   href="https://help.mailship.eu/kb/nastaveni-synchronizaci-shopify">doporučení</a> a
+                                   href="https://help.mailship.eu/CS/nastaveni-synchronizaci-shopify">doporučení</a> a
                                 vašich potřeb. Nezapomeňte navolit všechny <a
-                                   href="https://help.mailship.eu/kb/dopravy-a-jejich-nastaveni-shopify">dopravce</a>,
+                                   href="https://help.mailship.eu/CS/dopravy-a-jejich-nastaveni-shopify">dopravce</a>,
                                 které s námi máte smluvně domluvené.
                             </li>
                         </span>
@@ -183,16 +186,17 @@
                         <span id="api-access" style="display: none;">
                             <li><b>Přístup k API</b> – následně Vám zpět pošlu údaje, které budete používat pro
                                 autorizaci všech requestů. Pro získání autorizačního tokenu údaje pošlete přes endpoint
-                                <a
-                                   href="https://d32q8t04.eu1.hs-sales-engage.com/Ctc/L0+23284/d32q8T04/Jll2-6qcW7Y8-PT6lZ3lGW735SR96MwWwHW1HRR1X73sv07W67--HL1vdPrNVPqr414bx2RxN4djhkjcCmJ3W7fTN201-PsMwW4WX9lS7HT2_TW4YHB1q3B9wnGW6RjNB117BcTJW5JwL1H21kDmCW8tWnrF5lXk_XW5qpgqG759P_YW4h_mZ77sR-tcW8_4tyh7V9X_nW4dKwyv7KVc0qW83J-nn6CTHlNN7nmmP-70mxCW18tyFb5NjylvW1glDHm2r6VHVW6H0k-W2Cc1YgW2RLfRk6VCYNcW42qNB47KdvjrW7x2NB_6QFG9bW3gF1jP8_hdjyW64QmLL1p19VRW455PHx7tYF_nf8n5K6R04">Login
+                                <a href="https://app.mailship.eu/api/doc#tag/Login/operation/post_login.user">Login
                                     User</a>, token pak periodicky obnovujete pomocí <a
-                                   href="https://d32q8t04.eu1.hs-sales-engage.com/Ctc/L0+23284/d32q8T04/JlF2-6qcW8wLKSR6lZ3kWW7kyKcT2Y3fpmW1BY15C1Z4SG4VRm9mN5zqLpvW3L-3xP4xqvdbW9jHq3Y57dY6dN1g-r6_SVp5vW6vhSjn33d_FHW8q_Lpz5LMwtXV9H92S4W-Bz7W5hdJJ18h_L6yW352RYZ7WQb6nW2SY-3R1qDWCLN45MYSGxN9vVW1DDtk_4BY_S8VfC-Xz8FBD7FW3ym1ML5yYyDxW2szdxj5srJygW27SkVC66cXkcN6MHmZSY4pQhW3sJW0C55fh6bW8FbCsr92DvClW4V40LT4Y4ZJPW8J4Hwd2t_C8ZW7-HmZ76wWr8fW1NCQ2_5Jv43mW5QGwqV7qVdrYW36p4kz7rZ5PFW8pZnbJ7r7f4Pf1QpsBg04">Refresh
+                                   href="https://app.mailship.eu/api/doc#tag/Refresh-Token/operation/post_refresh_token">Refresh
                                     Token</a>.
                             </li>
                         </span>
                         <span id="api-docs" style="display: none;">
-                            <li><b>Technickou dokumentaci</b> naleznete <a
-                                   href="https://d32q8t04.eu1.hs-sales-engage.com/Ctc/L0+23284/d32q8T04/JkM2-6qcW6N1vHY6lZ3nqW10_l229jGw0GW7fKTb24YQnWhW7scL106N91RBW6dCfz66xFbRbW8Wg6K63GbYh6W8j03S53CdDGJW1tN4dC4XcvBLW9ffQHC6bxSpDW51v3rB782Vk0W6W_R833c96D6W1sTL0k4x7H2QW6wQyNQ3TmndcW5xdX4j6V3PH3V-4Gwp19h_l4W23lKBF7lGbYsW4XcFqP15mqrmVMB6Bk6zvftLW5V7hRT2xbJk0W4xCg4w3L2N79W65b3KC9dQRbBW7qqgQv7d14gJVfC66g4WQy18f2M5NWH04">zde</a>.
+                            <li><a href="https://developer.mailship.com/dev"></a>Vývojářský portál</a>
+                                obsahuje přehled nejpoužívanějších API endpointů a jejich popis.
+                                <b>Plnou technickou dokumentaci</b> pak naleznete <a
+                                   href="https://app.mailship.eu/api/doc#section/Introduction">zde</a>.
                                 V tuto chvíli budou pro Vás zřejmě nejpraktičtější endpointy týkající se produktů
                                 (Product), objednávek (Expedition) a avíz (Stock Advice).
                             </li>
@@ -201,56 +205,72 @@
 
                 </div>
 
-                <div id="plugins" style="display: none;">
-                    <span id="woocommerce" style="display: none;">
-                        <li><b>Pokud chcete využít integraci přes WooCommerce doplněk:</b></li>
-                        <ol>
-                            <li><b>Instalace doplňku Kybernaut Mailstep</b> – dle návodu si doplněk stáhněte a
-                                nainstalujte. Můžete rovnou provést základní nastavení pomocí údajů níže. Před aktivací
-                                integrace (bod 4) si prosím nejdříve se mnou domluvte online schůzku.</li>
-
-                            <li><b>Import produktových dat</b> – ve WooCommerce můžete provést export produktů, které
-                                potom v portálu Mailship hromadně naimportujete. Lze také produkty jednotlivě vytvořit
-                                přes Mailship, případně přes API endpoint Create Product.</li>
-                        </ol>
-                    </span>
-                    <span id="baselinker" style="display: none;">
-                        <li>Add an example of a functional endpoint to the "url" help field</li>
-                    </span>
+                <div id="base" style="display: none;">
+                    <li><b>Pokud chcete využít integraci přes Base:</b></li>
+                    <ol>
+                        <li><b>Instalace doplňku</b> – doplněk si aktivujte dle <a
+                               href="https://help.mailship.com/CS/instalace-integratoru-baselinker">návodu</a>.
+                        </li>
+                        <li><b>Kontrola produktových dat</b> – <a
+                               href="https://help.mailship.com/CS/prvni-nastaveni-synchronizace-produktu">SKU a
+                                EAN</a>, kódy musí být korektně vyplněné u všech produktů, které chcete <a
+                               href="https://help.mailship.com/CS/synchronizace-produktu-z-baselinker">synchronizovat</a>
+                            z Base do Mailship.
+                        </li>
+                        <li><b>Nastavení synchronizace skladů</b> – pro automatickou synchronizaci skladových zásob
+                            nastavte v doplňku ID skladu dle <a
+                               href="https://help.mailship.com/CS/nastaveni-synchronizace-skladu-pro-baselinker-napo">návodu</a>.
+                        </li>
+                        <li><b>Nastavení synchronizace objednávek</b> – pro přenesení objednávek je nutné nastavit
+                            <a href="https://help.mailship.com/CS/synchronizace-objednavek-z-baselinker">automatickou
+                                akci</a>
+                            z Base do Mailship. Pro následnou synchronizaci stavů objednávky nastavte <a
+                               href="https://help.mailship.com/CS/nastaveni-synchronizace-stavu-expedic-do-baselinke">párování
+                                stavů</a>.
+                        </li>
+                        <li><b>Nastavení dopravců</b> – pro správné párování přepravních metod na dopravce
+                            nasmlouvané u nás, je nutné vyplnit <a
+                               href="https://help.mailship.com/CS/nastaveni-dopravy-z-baselinker">párovací
+                                tabulku</a>.
+                        </li>
+                    </ol>
                 </div>
 
-                <!-- Next steps -->
-                <li>
-                    <span id="next-steps-expiry" style=""><b>Šarže</b> – Zašlete mi seznam všech produktů (včetně SKU), které mají mít aktivní sledování šarže. Ideálně ve formátu xls tabulky.</span>
-                </li>
-                <li>
-                    <span id="next-steps-stock-advice" style=""><b>Vytvoření avíza v portálu Mailship</b> – Než
-                        provedete
-                        návoz
-                        zboží na sklad, <a href="https://help.mailship.eu/kb/prijmy">vytvořte avízo</a> v našem systému.
-                        Bez
-                        avíza by nemohlo dojít k naskladnění.</span>
-                </li>
-                <li>
-                    <span id="next-steps-ean" style=""><b>Označení čárovým kódem (EAN)</b> – Každý produkt musí být
-                        označen unikátním EAN kódem. V případě chybějících kódů si s námi můžete domluvit jejich
-                        vytvoření a
-                        polepení vašich produktů.</span>
-                </li>
-                <li>
-                    <span id="next-steps-meeting" style=""><b>Rezervace online schůzky (60 minut)</b> – ráda Vám
-                        zodpovím
-                        veškeré otázky týkající se navigace v portálu Mailship, rozsahu integrace nebo používání API.
-                        Termín
-                        online schůzky si rezervujte na <a
-                           href="https://outlook.office.com/bookwithme/user/fbcd143a7a17492c9411d57a96722da8@mailstep.cz?anonymous&ep=plink">tomto
-                            odkazu</a>. V potvrzení rezervace obdržíte odkaz na MS Teams hovor.<br>
-                    </span>
-                </li>
-            </ul>
+                <div id="woocommerce" style="display: none;">
+                    <li><b>Pokud chcete využít integraci přes WooCommerce doplněk:</b></li>
+                    <ol>
+                        <li><b>Instalace doplňku Kybernaut Mailstep</b> – dle <a
+                               href="https://help.kybernaut.cz/help/instalace-pluginu/">návodu</a> si doplněk
+                            stáhněte a
+                            nainstalujte. Můžete rovnou provést základní nastavení pomocí údajů níže. Před aktivací
+                            integrace (bod 5) si prosím nejdříve se mnou domluvte online schůzku.</li>
 
-            <p>Těším se na spolupráci,</p>
-        </div>
+                        <li><b>Import produktových dat</b> – ve WooCommerce můžete provést export produktů, které
+                            potom v portálu Mailship hromadně naimportujete. Lze také produkty jednotlivě vytvořit
+                            přes Mailship, případně přes API endpoint Create Product.</li>
+                    </ol>
+                </div>
+
+        <!-- Next steps -->
+        <li>
+            <span id="next-steps-expiry" style=""><b>Šarže</b> – Zašlete mi seznam všech produktů (včetně SKU), které mají mít aktivní sledování šarže. Ideálně ve formátu xls tabulky.</span>
+        </li>
+        <li>
+            <span id="next-steps-stock-advice" style=""><b>Vytvoření avíza v portálu Mailship</b> – Než provedete návoz zboží na sklad, <a href="https://help.mailship.eu/CS/prijmy">vytvořte avízo</a> v našem systému. Bez avíza by nemohlo dojít k naskladnění.</span>
+        </li>
+        <li>
+            <span id="next-steps-ean" style=""><b>Označení čárovým kódem (EAN)</b> – Každý produkt musí být označen unikátním EAN kódem. V případě chybějících kódů si s námi můžete domluvit jejich vytvoření a polepení vašich produktů.</span>
+        </li>
+        <li>
+            <span id="next-steps-meeting" style=""><b>Rezervace online schůzky (60 minut)</b> – ráda Vám zodpovím veškeré otázky týkající se navigace v portálu Mailship, rozsahu integrace nebo používání API.
+                Termín online schůzky si rezervujte na <a
+                   href="https://outlook.office.com/bookwithme/user/fbcd143a7a17492c9411d57a96722da8@mailstep.cz?anonymous&ep=plink">tomto odkazu</a>. V potvrzení rezervace obdržíte odkaz na MS Teams hovor.<br>
+            </span>
+        </li>
+        </ul>
+
+        <p>Těším se na spolupráci,</p>
+    </div>
     </div>
 
     <div id="review" class="w3-cell w3-display-container">
@@ -344,20 +364,19 @@
                         </div>
                     </div>
 
-                    <div id="plugins-form" class="w3-container">
+                    <div id="base-form" class="w3-container">
                         <div class="w3-row-padding">
-                            <input type="checkbox" class="w3-check" name="plugins-check" id="plugins-check"
-                                   onchange="toggleVisibility('plugins')">
-                            <label for="plugins-check"><span class="bold">Pluginy</span></label>
+                            <input type="checkbox" class="w3-check" name="base-check" id="base-check"
+                                   onchange="toggleVisibility('base')">
+                            <label for="base-check"><span class="bold">Base</span></label>
                         </div>
-                        <div class="w3-container" style="padding-left: 3em;">
+                    </div>
+
+                    <div id="woocommerce-form" class="w3-container">
+                        <div class="w3-row-padding">
                             <input type="checkbox" class="w3-check" name="woocommerce-check" id="woocommerce-check"
                                    onchange="toggleVisibility('woocommerce')">
-                            <label for="woocommerce-check"><span>WooCommerce</span></label>
-                            <br>
-                            <input type="checkbox" class="w3-check" name="baselinker-check" id="baselinker-check"
-                                   onchange="toggleVisibility('baselinker')">
-                            <label for="baselinker"><span>Base.com</span></label>
+                            <label for="woocommerce-check"><span class="bold">WooCommerce</span></label>
                         </div>
                     </div>
                 </div>
@@ -388,28 +407,27 @@
                     <div id="next-steps-form" class="w3-container">
                         <div class="w3-row-padding">
                             <input type="checkbox" class="w3-check" name="next-steps-check" id="next-steps-check"
-                                   checked="checked" disabled>
+                                   checked="checked">
                             <label for="next-steps-check"><span class="bold">Další kroky</span></label>
                         </div>
 
                         <div class="w3-container" style="padding-left: 3em;">
                             <input type="checkbox" class="w3-check" name="next-steps-expiry-check"
-                                   id="next-steps-expiry-check"
-                                   onchange="toggleVisibility('next-steps-expiry')">
-                            <label for="next-steps-expiry"><span>Šarže</span></label>
+                                   id="next-steps-expiry-check" onchange="toggleVisibility('next-steps-expiry')">
+                            <label for="next-steps-expiry"><span>Šarže (nutné pro doplňky)</span></label>
                         </div>
 
                         <div class="w3-container" style="padding-left: 3em;">
                             <input type="checkbox" class="w3-check" name="next-steps-stock-advice-check"
                                    id="next-steps-stock-advice-check"
-                                   onchange="toggleVisibility('next-steps-stock-advice')" checked="checked" disabled>
+                                   onchange="toggleVisibility('next-steps-stock-advice')" checked="checked">
                             <label for="next-steps-stock-advice"><span>Vytvoření avíza</span></label>
                         </div>
 
                         <div class="w3-container" style="padding-left: 3em;">
                             <input type="checkbox" class="w3-check" name="next-steps-ean-check"
                                    id="next-steps-ean-check" onchange="toggleVisibility('next-steps-ean')"
-                                   checked="checked" disabled>
+                                   checked="checked">
                             <label for="next-steps-ean"><span>Označení EAN</span></label>
                         </div>
 
