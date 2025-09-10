@@ -29,7 +29,7 @@
         }
 
         function changeDeveloperName() {
-            $(".customer-name").text(" " + $("#customer-name-input").val());
+            $(".customer-name").text(" " + $("#customer-name-input").val() + ",");
         }
 
         function changeAppName() {
@@ -85,22 +85,26 @@
 
         <!-- Feedback content -->
         <div id="disclaimer" style="margin-top: 1em">
-            <p>Dobrý den, <span class="customer-name"></span>,<br></p>
+            <p>Dobrý den,<span class="customer-name"></span><br></p>
             <p>dovolte mi Vás srdečně přivítat u společnosti Mailstep a poděkovat za Vaši důvěru a zájem o naše služby
                 fulfillmentu. Jmenuji se <span class="reviewer-name">Dominika Matějková</span> a během celého procesu
-                onboardingu budu Vaším technickým kontaktem.
-                <br>
+                onboardingu budu Vaším technickým kontaktem.</p>
+                <p>
                 Zde je seznam klíčových kroků, které od Vás v tuto chvíli potřebujeme:
-            </p>
+            
             <ul>
                 <span id="credentials" style="">
                     <li><b>Přihlášení do Mailship portálu</b> – na email Vám dorazila automaticky generovaná zpráva k
                         vytvoření hesla. Pokud email nemůžete najít, zkontrolujte i SPAM. Do portálu se pak přihlásíte
-                        přes odkaz <a href="https://ui.app.mailship.eu/user">https://ui.app.mailship.eu/user</a> .</li>
+                        přes odkaz <a href="https://ui.app.mailship.eu/user">https://ui.app.mailship.eu/user</a>
+                        <ul>
+                            <li>Pokud potřebujete účet i pro další uživatele, pošlete mi prosím celé jméno, email a telefonní číslo. Telefonní číslo nesmí být pro dva účty stejné, slouží k obnovení hesla, pokud ho zapomenete.</li>
+                        </ul>
+                    </li>
                 </span>
 
                 <div id="shoptet" style="display: none;">
-                    <li><b>Pokud budete integrovat přes Shoptet doplněk:</b></li>
+                    <li><b>Pro integraci přes Shoptet doplněk:</b></li>
                     <ol>
                         <span id="shoptet-install" style="display: none;">
                             <li><b>Instalace doplňku Shoptet</b> – Dle <a
@@ -139,7 +143,7 @@
                 </div>
 
                 <div id="shopify" style="display: none;">
-                    <li><b>Pokud budete integrovat přes Shopify doplněk:</b></li>
+                    <li><b>Pro integraci přes Shopify doplněk:</b></li>
                     <ol>
                         <span id="shopify-api" style="display: none;">
                             <li><b>Vytvoření API emailu</b> – Vytvořte email, který budete používat pro doplněk Shopify
@@ -174,14 +178,13 @@
                 </div>
 
                 <div id="api" style="display: none;">
-                    <li><b>Pokud budete integrovat sami přes naše API:</b></li>
+                    <li><b>Pro integraci přes naše API:</b></li>
                     <ol>
                         <span id="api-email" style="display: none;">
                             <li><b>Vytvoření API emailu</b> – vytvořte email, který budete používat pro přístup k
                                 Mailship API. Tento email by měl být odlišný od Vašeho osobního emailu – např. api@<span
-                                      class="eshop-name" style="margin-left: -5;"></span>. API email mi prosím zašlete
-                                zpět společně s telefonním číslem, které nesmí být stejné u dvou různých emailů.
-                                Telefonní číslo slouží pro obnovení hesla v případě jeho zapomenutí.</li>
+                                      class="eshop-name" style="margin-left: -5;"></span> a jeho adresu mi prosím zašlete
+                                zpět.</li>
                         </span>
                         <span id="api-access" style="display: none;">
                             <li><b>Přístup k API</b> – následně Vám zpět pošlu údaje, které budete používat pro
@@ -193,12 +196,12 @@
                             </li>
                         </span>
                         <span id="api-docs" style="display: none;">
-                            <li><a href="https://developer.mailship.com/dev"></a>Vývojářský portál</a>
+                            <li><a href="https://developer.mailship.com/dev">Vývojářský portál</a>
                                 obsahuje přehled nejpoužívanějších API endpointů a jejich popis.
                                 <b>Plnou technickou dokumentaci</b> pak naleznete <a
                                    href="https://app.mailship.eu/api/doc#section/Introduction">zde</a>.
                                 V tuto chvíli budou pro Vás zřejmě nejpraktičtější endpointy týkající se produktů
-                                (Product), objednávek (Expedition) a avíz (Stock Advice).
+                                (Product), objednávek (Expedition) a skladové zásoby (Stock).
                             </li>
                         </span>
                     </ol>
@@ -267,7 +270,7 @@
                    href="https://outlook.office.com/bookwithme/user/fbcd143a7a17492c9411d57a96722da8@mailstep.cz?anonymous&ep=plink">tomto odkazu</a>. V potvrzení rezervace obdržíte odkaz na MS Teams hovor.<br>
             </span>
         </li>
-        </ul>
+        </ul></p>
 
         <p>Těším se na spolupráci,</p>
     </div>
@@ -413,14 +416,15 @@
 
                         <div class="w3-container" style="padding-left: 3em;">
                             <input type="checkbox" class="w3-check" name="next-steps-expiry-check"
-                                   id="next-steps-expiry-check" onchange="toggleVisibility('next-steps-expiry')">
+                                   id="next-steps-expiry-check" onchange="toggleVisibility('next-steps-expiry')"
+                                   checked="checked">
                             <label for="next-steps-expiry"><span>Šarže (nutné pro doplňky)</span></label>
                         </div>
 
                         <div class="w3-container" style="padding-left: 3em;">
                             <input type="checkbox" class="w3-check" name="next-steps-stock-advice-check"
-                                   id="next-steps-stock-advice-check"
-                                   onchange="toggleVisibility('next-steps-stock-advice')" checked="checked">
+                                   id="next-steps-stock-advice-check" onchange="toggleVisibility('next-steps-stock-advice')"
+                                   checked="checked">
                             <label for="next-steps-stock-advice"><span>Vytvoření avíza</span></label>
                         </div>
 
